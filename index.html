@@ -233,9 +233,6 @@
             <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
             <button id="passwordSubmit" class="password-btn">进入书签管理</button>
             <div id="passwordError" class="error-message"></div>
-            <div style="margin-top: 15px; font-size: 12px; color: #666;">
-                提示：密码为 <strong>normanlin1!</strong>
-            </div>
         </div>
     </div>
 
@@ -279,7 +276,7 @@
         // 存储所有书签的数组
         let allBookmarks = [];
         
-        // 密码验证相关
+        // 密码验证相关（密码不在界面显示）
         const CORRECT_PASSWORD = "normanlin1!";
         
         // 页面加载完成后初始化
@@ -418,7 +415,6 @@
     <meta charset="UTF-8">
     <title>我的书签收藏夹 (密码保护版)</title>
     <style>
-        /* 整体样式 */
         body {
             background-color: #ffe6f2;
             color: #333;
@@ -428,7 +424,6 @@
             min-height: 100vh;
         }
         
-        /* 密码界面样式 */
         #passwordScreen {
             position: fixed;
             top: 0;
@@ -496,7 +491,6 @@
             min-height: 20px;
         }
         
-        /* 主界面样式 */
         #mainContent {
             display: none;
         }
@@ -509,7 +503,6 @@
             border-bottom: 2px solid #ffccd5;
         }
         
-        /* 书签列表样式 */
         #bookmarkList {
             background-color: white;
             border-radius: 10px;
@@ -537,7 +530,6 @@
             text-decoration: underline;
         }
         
-        /* 空状态提示 */
         .empty-state {
             text-align: center;
             color: #999;
@@ -547,7 +539,6 @@
     </style>
 </head>
 <body>
-    <!-- 密码输入界面 -->
     <div id="passwordScreen">
         <div class="password-box">
             <h2>🔒 密码验证</h2>
@@ -558,7 +549,6 @@
         </div>
     </div>
 
-    <!-- 书签列表 -->
     <div id="mainContent">
         <h1>我的书签收藏夹</h1>
         <h3>我的书签列表</h3>
@@ -568,7 +558,6 @@
     </div>
 
     <script>
-        // 密码验证相关
         const CORRECT_PASSWORD = "normanlin1!";
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -578,7 +567,6 @@
             const passwordSubmit = document.getElementById('passwordSubmit');
             const passwordError = document.getElementById('passwordError');
             
-            // 密码输入框回车提交
             passwordInput.addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
                     event.preventDefault();
@@ -586,28 +574,23 @@
                 }
             });
             
-            // 提交按钮点击事件
             passwordSubmit.addEventListener('click', checkPassword);
             
-            // 检查密码函数
             function checkPassword() {
                 const enteredPassword = passwordInput.value.trim();
                 
                 if (enteredPassword === CORRECT_PASSWORD) {
-                    // 密码正确，显示主内容
                     passwordScreen.style.display = 'none';
                     mainContent.style.display = 'block';
                     passwordError.textContent = '';
                     passwordInput.value = '';
                 } else {
-                    // 密码错误
                     passwordError.textContent = '密码错误，请重试';
                     passwordInput.value = '';
                     passwordInput.focus();
                 }
             }
             
-            // 初始焦点设置在密码输入框
             passwordInput.focus();
         });
     <\/script>
@@ -619,7 +602,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = '书签收藏夹_密码保护版.html';
+                a.download = '书签收藏夹.html';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
