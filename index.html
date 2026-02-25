@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>书签收藏夹 (简化版)</title>
+    <title>我的书签收藏夹 (密码保护版)</title>
     <style>
         /* 整体样式 */
         body {
@@ -95,13 +95,14 @@
             border-bottom: 2px solid #ffccd5;
         }
         
-        /* 表单样式 */
+        /* 表单区域 */
         #addBookmarkArea {
             background-color: #fff8e1;
             border: 2px solid #ffccbc;
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
         }
         
         #addBookmarkArea h3 {
@@ -148,6 +149,7 @@
         button:hover {
             background: linear-gradient(135deg, #f50057, #ff4081);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
         }
         
         .download-btn {
@@ -164,6 +166,7 @@
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
         }
         
         .bookmark-item {
@@ -191,6 +194,7 @@
             border-radius: 10px;
             margin: 10px 0;
             text-align: center;
+            font-weight: bold;
         }
         
         .success {
@@ -204,6 +208,20 @@
             color: #1565c0;
             border: 1px solid #bbdefb;
         }
+        
+        .warning {
+            background-color: #fff3e0;
+            color: #ef6c00;
+            border: 1px solid #ffcc80;
+        }
+        
+        /* 空状态提示 */
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -215,14 +233,17 @@
             <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
             <button id="passwordSubmit" class="password-btn">进入书签管理</button>
             <div id="passwordError" class="error-message"></div>
+            <div style="margin-top: 15px; font-size: 12px; color: #666;">
+                提示：密码为 <strong>normanlin1!</strong>
+            </div>
         </div>
     </div>
 
     <!-- 主内容区域 -->
     <div id="mainContent">
-        <h1>书签收藏夹</h1>
+        <h1>我的书签收藏夹</h1>
         
-        <!-- 控制区域 -->
+        <!-- 添加书签区域 -->
         <div id="addBookmarkArea">
             <h3>添加新书签</h3>
             <form id="bookmarkForm">
@@ -240,7 +261,7 @@
                 <button type="button" id="downloadBtn" class="download-btn">💾 下载HTML文件</button>
             </form>
             <div class="message info" style="margin-top: 15px;">
-                💡 <strong>使用说明：</strong>添加书签后点击下载按钮，将下载的文件上传到GitHub替换旧文件
+                💡 <strong>使用说明：</strong>添加书签后点击下载按钮，将下载的HTML文件上传到GitHub即可
             </div>
         </div>
 
@@ -248,25 +269,18 @@
         <h3>我的书签列表</h3>
         <div id="messageArea"></div>
         <div id="bookmarkList">
-            <!-- 初始书签 -->
-            <div class="bookmark-item">
-                <a href="https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D" 
-                   class="bookmark-link" target="_blank">
-                   辉翼 2011款 自动领先版
-                </a>
+            <div class="empty-state" id="emptyMessage">
+                暂无书签，请添加您的第一个书签
             </div>
         </div>
     </div>
 
     <script>
+        // 存储所有书签的数组
+        let allBookmarks = [];
+        
         // 密码验证相关
         const CORRECT_PASSWORD = "normanlin1!";
-        let allBookmarks = [
-            {
-                name: "辉翼 2011款 自动领先版",
-                url: "https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D"
-            }
-        ];
         
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
@@ -280,6 +294,7 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const messageArea = document.getElementById('messageArea');
             const bookmarkList = document.getElementById('bookmarkList');
+            const emptyMessage = document.getElementById('emptyMessage');
             
             // 密码输入框回车提交
             passwordInput.addEventListener('keypress', function(event) {
@@ -321,6 +336,15 @@
                 }
             }
             
+            // 更新空状态显示
+            function updateEmptyState() {
+                if (allBookmarks.length === 0) {
+                    emptyMessage.style.display = 'block';
+                } else {
+                    emptyMessage.style.display = 'none';
+                }
+            }
+            
             // 显示消息函数
             function showMessage(text, type = 'info') {
                 messageArea.innerHTML = `<div class="message ${type}">${text}</div>`;
@@ -335,7 +359,7 @@
                 const url = document.getElementById('bookmarkUrl').value.trim();
                 
                 if (!name || !url) {
-                    showMessage('请填写书签名和网址', 'info');
+                    showMessage('请填写书签名和网址', 'warning');
                     return;
                 }
                 
@@ -356,6 +380,9 @@
                 `;
                 bookmarkList.appendChild(bookmarkItem);
                 
+                // 更新空状态
+                updateEmptyState();
+                
                 // 清空表单
                 document.getElementById('bookmarkName').value = '';
                 document.getElementById('bookmarkUrl').value = '';
@@ -368,6 +395,11 @@
             
             // 下载HTML文件函数
             function downloadHTML() {
+                if (allBookmarks.length === 0) {
+                    showMessage('请先添加至少一个书签再下载', 'warning');
+                    return;
+                }
+                
                 // 构建书签列表HTML
                 let bookmarkItemsHTML = '';
                 allBookmarks.forEach(bookmark => {
@@ -379,13 +411,14 @@
                     </div>`;
                 });
                 
-                // 构建完整的HTML文件内容
+                // 构建完整的HTML文件内容（包含密码验证）
                 const htmlContent = `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>书签收藏夹</title>
+    <title>我的书签收藏夹 (密码保护版)</title>
     <style>
+        /* 整体样式 */
         body {
             background-color: #ffe6f2;
             color: #333;
@@ -393,6 +426,79 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
+        }
+        
+        /* 密码界面样式 */
+        #passwordScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe6f2, #fff8e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .password-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        
+        .password-box h2 {
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffb6c1;
+            border-radius: 25px;
+            font-size: 16px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .password-input:focus {
+            border-color: #ff4081;
+            outline: none;
+        }
+        
+        .password-btn {
+            background: linear-gradient(135deg, #ff4081, #ff79b0);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .password-btn:hover {
+            background: linear-gradient(135deg, #f50057, #ff4081);
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #f44336;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+        
+        /* 主界面样式 */
+        #mainContent {
+            display: none;
         }
         
         h1 {
@@ -403,11 +509,13 @@
             border-bottom: 2px solid #ffccd5;
         }
         
+        /* 书签列表样式 */
         #bookmarkList {
             background-color: white;
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
         }
         
         .bookmark-item {
@@ -428,20 +536,79 @@
             background-color: #fff0f6;
             text-decoration: underline;
         }
+        
+        /* 空状态提示 */
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <h1>书签收藏夹</h1>
-    
-    <h3>我的书签列表</h3>
-    <div id="bookmarkList">
-        ${bookmarkItemsHTML}
+    <!-- 密码输入界面 -->
+    <div id="passwordScreen">
+        <div class="password-box">
+            <h2>🔒 密码验证</h2>
+            <p>请输入密码查看书签内容</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
+            <button id="passwordSubmit" class="password-btn">查看书签</button>
+            <div id="passwordError" class="error-message"></div>
+        </div>
     </div>
-    
+
+    <!-- 书签列表 -->
+    <div id="mainContent">
+        <h1>我的书签收藏夹</h1>
+        <h3>我的书签列表</h3>
+        <div id="bookmarkList">
+            ${bookmarkItemsHTML}
+        </div>
+    </div>
+
     <script>
-        // 简单的页面初始化
+        // 密码验证相关
+        const CORRECT_PASSWORD = "normanlin1!";
+        
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('书签页面已加载，共' + document.querySelectorAll('.bookmark-item').length + '个书签');
+            const passwordScreen = document.getElementById('passwordScreen');
+            const mainContent = document.getElementById('mainContent');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordSubmit = document.getElementById('passwordSubmit');
+            const passwordError = document.getElementById('passwordError');
+            
+            // 密码输入框回车提交
+            passwordInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    checkPassword();
+                }
+            });
+            
+            // 提交按钮点击事件
+            passwordSubmit.addEventListener('click', checkPassword);
+            
+            // 检查密码函数
+            function checkPassword() {
+                const enteredPassword = passwordInput.value.trim();
+                
+                if (enteredPassword === CORRECT_PASSWORD) {
+                    // 密码正确，显示主内容
+                    passwordScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    passwordError.textContent = '';
+                    passwordInput.value = '';
+                } else {
+                    // 密码错误
+                    passwordError.textContent = '密码错误，请重试';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            
+            // 初始焦点设置在密码输入框
+            passwordInput.focus();
         });
     <\/script>
 </body>
@@ -452,7 +619,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = '书签收藏夹.html';
+                a.download = '书签收藏夹_密码保护版.html';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -467,6 +634,9 @@
                 div.textContent = text;
                 return div.innerHTML;
             }
+            
+            // 初始更新空状态
+            updateEmptyState();
             
             // 初始焦点设置在密码输入框
             passwordInput.focus();
