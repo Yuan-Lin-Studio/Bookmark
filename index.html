@@ -1,0 +1,366 @@
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file.
+It will be read and overwritten.
+DO NOT EDIT! -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>书签收藏夹 (密码保护版)</TITLE>
+<style>
+    /* 密码输入界面样式 */
+    #passwordScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ffe6f2, #fff8e1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        flex-direction: column;
+    }
+    
+    .password-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    }
+    
+    .password-container h2 {
+        color: #e91e63;
+        margin-bottom: 10px;
+    }
+    
+    .password-container p {
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .password-input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #ffb6c1;
+        border-radius: 25px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    
+    .password-input:focus {
+        border-color: #ff4081;
+        outline: none;
+        box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
+    }
+    
+    .password-btn {
+        background: linear-gradient(135deg, #ff4081, #ff79b0);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 40px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+        width: 100%;
+    }
+    
+    .password-btn:hover {
+        background: linear-gradient(135deg, #f50057, #ff4081);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
+    }
+    
+    .error-message {
+        color: #f44336;
+        margin-top: 10px;
+        font-size: 14px;
+        min-height: 20px;
+    }
+    
+    /* 主页面样式（默认隐藏） */
+    #mainContent {
+        display: none;
+    }
+    
+    /* 整体样式 */
+    body {
+        background-color: #ffe6f2; /* 浅粉色背景 */
+        color: #333;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+    
+    /* 主标题样式 */
+    h1 {
+        color: #d81b60;
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ffccd5;
+    }
+    
+    /* 添加书签区域 */
+    #addBookmarkArea {
+        background-color: #fff8e1; /* 米黄色背景 */
+        border: 2px solid #ffccbc;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
+    }
+    
+    #addBookmarkArea h3 {
+        color: #e91e63;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    
+    /* 表单样式 */
+    label {
+        display: inline-block;
+        width: 80px;
+        color: #d81b60;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="url"] {
+        padding: 10px 15px;
+        border: 2px solid #ffb6c1;
+        border-radius: 25px;
+        font-size: 14px;
+        width: 300px;
+        background-color: white;
+        transition: all 0.3s;
+        box-sizing: border-box;
+    }
+    
+    input[type="text"]:focus,
+    input[type="url"]:focus {
+        border-color: #ff4081;
+        outline: none;
+        box-shadow: 0 0 8px rgba(255, 64, 129, 0.3);
+    }
+    
+    /* 圆润按钮样式 */
+    button[type="submit"] {
+        background: linear-gradient(135deg, #ff4081, #ff79b0);
+        color: white;
+        border: none;
+        border-radius: 50px; /* 圆润效果 */
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+        display: block;
+        margin-top: 20px;
+    }
+    
+    button[type="submit"]:hover {
+        background: linear-gradient(135deg, #f50057, #ff4081);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
+    }
+    
+    button[type="submit"]:active {
+        transform: translateY(0);
+    }
+    
+    /* 书签列表区域 */
+    h3:not(#addBookmarkArea h3) {
+        color: #d81b60;
+        padding-left: 10px;
+        border-left: 4px solid #ff4081;
+    }
+    
+    #bookmarkList {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
+    }
+    
+    DT {
+        padding: 8px 0;
+        border-bottom: 1px dashed #ffccd5;
+    }
+    
+    A {
+        color: #e91e63;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.2s;
+        display: inline-block;
+    }
+    
+    A:hover {
+        background-color: #fff0f6;
+        color: #c2185b;
+        text-decoration: underline;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        label {
+            display: block;
+            width: auto;
+            margin-bottom: 5px;
+        }
+        
+        .password-container {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
+<!-- 密码输入界面（始终显示，直到输入正确密码） -->
+<div id="passwordScreen">
+    <div class="password-container">
+        <h2>🔒 密码验证</h2>
+        <p>请输入密码查看和编辑书签内容</p>
+        <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
+        <button id="passwordSubmit" class="password-btn">进入书签管理</button>
+        <div id="passwordError" class="error-message"></div>
+    </div>
+</div>
+
+<!-- 主内容区域（默认隐藏） -->
+<div id="mainContent">
+    <H1>书签收藏夹 (密码保护版)</H1>
+
+    <!-- 添加书签的功能区 -->
+    <div id="addBookmarkArea">
+        <h3>添加新书签</h3>
+        <form id="bookmarkForm">
+            <label for="bookmarkName">书签名：</label>
+            <input type="text" id="bookmarkName" placeholder="例如：GitHub" required>
+            <br><br>
+            
+            <label for="bookmarkUrl">网址 (URL)：</label>
+            <input type="url" id="bookmarkUrl" placeholder="https://example.com" required>
+            <br><br>
+            
+            <button type="submit">添加书签</button>
+        </form>
+    </div>
+
+    <!-- 原有的及新增的书签将显示在此处 -->
+    <H3>我的书签列表</H3>
+    <DL id="bookmarkList">
+        <p>
+            <!-- 您原有的书签 -->
+            <DT><A HREF="https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D">辉翼 2011款 自动领先版</A>
+    </DL>
+    <p>
+</div>
+
+<script>
+    // 密码验证相关
+    const CORRECT_PASSWORD = "normanlin1!"; // 预设密码
+    const passwordScreen = document.getElementById('passwordScreen');
+    const mainContent = document.getElementById('mainContent');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordSubmit = document.getElementById('passwordSubmit');
+    const passwordError = document.getElementById('passwordError');
+    
+    // 密码输入框回车提交
+    passwordInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            checkPassword();
+        }
+    });
+    
+    // 提交按钮点击事件
+    passwordSubmit.addEventListener('click', checkPassword);
+    
+    // 检查密码函数
+    function checkPassword() {
+        const enteredPassword = passwordInput.value.trim();
+        
+        if (enteredPassword === CORRECT_PASSWORD) {
+            // 密码正确，显示主内容
+            passwordScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            passwordError.textContent = '';
+            passwordInput.value = '';
+        } else {
+            // 密码错误
+            passwordError.textContent = '密码错误，请重试';
+            passwordInput.value = '';
+            passwordInput.focus();
+            
+            // 添加错误动画效果
+            passwordInput.style.borderColor = '#f44336';
+            setTimeout(() => {
+                passwordInput.style.borderColor = '#ffb6c1';
+            }, 500);
+        }
+    }
+    
+    // 书签功能相关
+    const form = document.getElementById('bookmarkForm');
+    const bookmarkList = document.getElementById('bookmarkList');
+    
+    // 处理表单提交事件
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+    
+            // 获取用户输入
+            const name = document.getElementById('bookmarkName').value.trim();
+            const url = document.getElementById('bookmarkUrl').value.trim();
+    
+            // 基本验证
+            if (!name || !url) {
+                alert('请填写书签名和网址。');
+                return;
+            }
+            
+            // 确保URL有协议前缀
+            let fullUrl = url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                fullUrl = 'https://' + url;
+            }
+    
+            // 创建新的书签元素
+            const newBookmark = document.createElement('DT');
+            const newLink = document.createElement('A');
+            newLink.href = fullUrl;
+            newLink.textContent = name;
+            newLink.target = "_blank"; // 在新标签页打开
+            newBookmark.appendChild(newLink);
+    
+            // 将新书签插入到列表容器中
+            bookmarkList.appendChild(newBookmark);
+    
+            // 清空表单输入框
+            document.getElementById('bookmarkName').value = '';
+            document.getElementById('bookmarkUrl').value = '';
+    
+            // 给予添加成功的反馈
+            alert(`书签 "${name}" 已成功添加！`);
+        });
+    }
+</script>
