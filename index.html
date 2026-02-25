@@ -1,945 +1,476 @@
-<!DOCTYPE NETSCAPE-Bookmark-file-1>
-<!-- This is an automatically generated file. -->
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<TITLE>书签收藏夹 (自动下载版)</TITLE>
-<style>
-    /* 密码输入界面样式 */
-    #passwordScreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #ffe6f2, #fff8e1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        flex-direction: column;
-    }
-    
-    .password-container {
-        background-color: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-    }
-    
-    .password-container h2 {
-        color: #e91e63;
-        margin-bottom: 10px;
-    }
-    
-    .password-container p {
-        color: #666;
-        margin-bottom: 30px;
-    }
-    
-    .password-input {
-        width: 100%;
-        padding: 15px;
-        border: 2px solid #ffb6c1;
-        border-radius: 25px;
-        font-size: 16px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        text-align: center;
-        transition: all 0.3s;
-    }
-    
-    .password-input:focus {
-        border-color: #ff4081;
-        outline: none;
-        box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
-    }
-    
-    .password-btn {
-        background: linear-gradient(135deg, #ff4081, #ff79b0);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 15px 40px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-        width: 100%;
-    }
-    
-    .password-btn:hover {
-        background: linear-gradient(135deg, #f50057, #ff4081);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
-    }
-    
-    .error-message {
-        color: #f44336;
-        margin-top: 10px;
-        font-size: 14px;
-        min-height: 20px;
-    }
-    
-    /* 主页面样式（默认隐藏） */
-    #mainContent {
-        display: none;
-    }
-    
-    /* 整体样式 */
-    body {
-        background-color: #ffe6f2;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 20px;
-        min-height: 100vh;
-    }
-    
-    h1 {
-        color: #d81b60;
-        text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #ffccd5;
-    }
-    
-    #addBookmarkArea {
-        background-color: #fff8e1;
-        border: 2px solid #ffccbc;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-    }
-    
-    #addBookmarkArea h3 {
-        color: #e91e63;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-    
-    .controls {
-        background-color: #fff8e1;
-        border: 2px solid #ffccbc;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-        text-align: center;
-    }
-    
-    .controls h3 {
-        color: #e91e63;
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-    
-    label {
-        display: inline-block;
-        width: 80px;
-        color: #d81b60;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    
-    input[type="text"],
-    input[type="url"] {
-        padding: 10px 15px;
-        border: 2px solid #ffb6c1;
-        border-radius: 25px;
-        font-size: 14px;
-        width: 300px;
-        background-color: white;
-        transition: all 0.3s;
-        box-sizing: border-box;
-    }
-    
-    input[type="text"]:focus,
-    input[type="url"]:focus {
-        border-color: #ff4081;
-        outline: none;
-        box-shadow: 0 0 8px rgba(255, 64, 129, 0.3);
-    }
-    
-    button {
-        background: linear-gradient(135deg, #ff4081, #ff79b0);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 12px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-        margin: 5px;
-    }
-    
-    button:hover {
-        background: linear-gradient(135deg, #f50057, #ff4081);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
-    }
-    
-    .download-btn {
-        background: linear-gradient(135deg, #4CAF50, #81C784);
-    }
-    
-    .download-btn:hover {
-        background: linear-gradient(135deg, #388E3C, #4CAF50);
-    }
-    
-    .message {
-        padding: 10px 15px;
-        border-radius: 10px;
-        margin: 10px 0;
-        text-align: center;
-        font-weight: bold;
-    }
-    
-    .success {
-        background-color: #e8f5e9;
-        color: #2e7d32;
-        border: 1px solid #c8e6c9;
-    }
-    
-    .info {
-        background-color: #e3f2fd;
-        color: #1565c0;
-        border: 1px solid #bbdefb;
-    }
-    
-    .warning {
-        background-color: #fff3e0;
-        color: #ef6c00;
-        border: 1px solid #ffcc80;
-    }
-    
-    h3:not(#addBookmarkArea h3):not(.controls h3) {
-        color: #d81b60;
-        padding-left: 10px;
-        border-left: 4px solid #ff4081;
-    }
-    
-    #bookmarkList {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-    }
-    
-    DT {
-        padding: 8px 0;
-        border-bottom: 1px dashed #ffccd5;
-    }
-    
-    A {
-        color: #e91e63;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: all 0.2s;
-        display: inline-block;
-    }
-    
-    A:hover {
-        background-color: #fff0f6;
-        color: #c2185b;
-        text-decoration: underline;
-    }
-</style>
-
-<!-- 密码输入界面 -->
-<div id="passwordScreen">
-    <div class="password-container">
-        <h2>🔒 密码验证</h2>
-        <p>请输入密码查看和编辑书签内容</p>
-        <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
-        <button id="passwordSubmit" class="password-btn">进入书签管理</button>
-        <div id="passwordError" class="error-message"></div>
-    </div>
-</div>
-
-<!-- 主内容区域（默认隐藏） -->
-<div id="mainContent">
-    <H1>书签收藏夹 (自动下载版)</H1>
-    
-    <!-- 控制按钮区域 -->
-    <div class="controls">
-        <h3>数据管理</h3>
-        <button id="downloadBtn" class="download-btn">💾 下载当前书签为HTML文件</button>
-        <div class="message warning" style="margin-top: 15px;">
-            💡 <strong>使用说明：</strong>添加书签后，请点击上方按钮下载新版HTML文件。下载的文件可用于替换您GitHub仓库中的旧文件。
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>书签收藏夹 (简化版)</title>
+    <style>
+        /* 整体样式 */
+        body {
+            background-color: #ffe6f2;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        /* 密码界面样式 */
+        #passwordScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe6f2, #fff8e1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .password-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        
+        .password-box h2 {
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffb6c1;
+            border-radius: 25px;
+            font-size: 16px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .password-input:focus {
+            border-color: #ff4081;
+            outline: none;
+        }
+        
+        .password-btn {
+            background: linear-gradient(135deg, #ff4081, #ff79b0);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .password-btn:hover {
+            background: linear-gradient(135deg, #f50057, #ff4081);
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #f44336;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+        
+        /* 主界面样式 */
+        #mainContent {
+            display: none;
+        }
+        
+        h1 {
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffccd5;
+        }
+        
+        /* 表单样式 */
+        #addBookmarkArea {
+            background-color: #fff8e1;
+            border: 2px solid #ffccbc;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        #addBookmarkArea h3 {
+            color: #e91e63;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: inline-block;
+            width: 100px;
+            color: #d81b60;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="url"] {
+            padding: 10px 15px;
+            border: 2px solid #ffb6c1;
+            border-radius: 25px;
+            font-size: 14px;
+            width: 300px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #ff4081, #ff79b0);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: linear-gradient(135deg, #f50057, #ff4081);
+            transform: translateY(-2px);
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(135deg, #388E3C, #4CAF50);
+        }
+        
+        /* 书签列表样式 */
+        #bookmarkList {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .bookmark-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ffccd5;
+        }
+        
+        .bookmark-link {
+            color: #e91e63;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .bookmark-link:hover {
+            background-color: #fff0f6;
+            text-decoration: underline;
+        }
+        
+        /* 消息样式 */
+        .message {
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+    </style>
+</head>
+<body>
+    <!-- 密码输入界面 -->
+    <div id="passwordScreen">
+        <div class="password-box">
+            <h2>🔒 密码验证</h2>
+            <p>请输入密码查看和编辑书签内容</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
+            <button id="passwordSubmit" class="password-btn">进入书签管理</button>
+            <div id="passwordError" class="error-message"></div>
         </div>
     </div>
-    
-    <!-- 添加书签的功能区 -->
-    <div id="addBookmarkArea">
-        <h3>添加新书签</h3>
-        <form id="bookmarkForm">
-            <label for="bookmarkName">书签名：</label>
-            <input type="text" id="bookmarkName" placeholder="例如：GitHub" required>
-            <br><br>
-            
-            <label for="bookmarkUrl">网址 (URL)：</label>
-            <input type="url" id="bookmarkUrl" placeholder="https://example.com" required>
-            <br><br>
-            
-            <button type="submit">添加书签</button>
-        </form>
+
+    <!-- 主内容区域 -->
+    <div id="mainContent">
+        <h1>书签收藏夹</h1>
+        
+        <!-- 控制区域 -->
+        <div id="addBookmarkArea">
+            <h3>添加新书签</h3>
+            <form id="bookmarkForm">
+                <div class="form-group">
+                    <label for="bookmarkName">书签名：</label>
+                    <input type="text" id="bookmarkName" placeholder="例如：GitHub" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookmarkUrl">网址：</label>
+                    <input type="url" id="bookmarkUrl" placeholder="https://example.com" required>
+                </div>
+                
+                <button type="submit">添加书签</button>
+                <button type="button" id="downloadBtn" class="download-btn">💾 下载HTML文件</button>
+            </form>
+            <div class="message info" style="margin-top: 15px;">
+                💡 <strong>使用说明：</strong>添加书签后点击下载按钮，将下载的文件上传到GitHub替换旧文件
+            </div>
+        </div>
+
+        <!-- 书签列表 -->
+        <h3>我的书签列表</h3>
+        <div id="messageArea"></div>
+        <div id="bookmarkList">
+            <!-- 初始书签 -->
+            <div class="bookmark-item">
+                <a href="https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D" 
+                   class="bookmark-link" target="_blank">
+                   辉翼 2011款 自动领先版
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- 书签列表 -->
-    <H3>我的书签列表</H3>
-    <div id="messageArea"></div>
-    <DL id="bookmarkList">
-        <p>
-            <!-- 初始书签 -->
-            <DT><A HREF="https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D">辉翼 2011款 自动领先版</A>
-    </DL>
-</div>
-
-<script>
-    // 等待页面完全加载后再执行初始化
-    document.addEventListener('DOMContentLoaded', function() {
+    <script>
         // 密码验证相关
         const CORRECT_PASSWORD = "normanlin1!";
-        const passwordScreen = document.getElementById('passwordScreen');
-        const mainContent = document.getElementById('mainContent');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordSubmit = document.getElementById('passwordSubmit');
-        const passwordError = document.getElementById('passwordError');
-        const messageArea = document.getElementById('messageArea');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
-        // 存储所有书签
-        let bookmarks = [
+        let allBookmarks = [
             {
                 name: "辉翼 2011款 自动领先版",
                 url: "https://m.che168.com/cardetail/index?infoid=56981901&pvareaid=108721&cpcid=0&isrecom=0&queryid=1771941995830$0$74302740-1308-4AA4-BC3B-62385F275B5D$94686$1&cartype=70&cxextraparamsnew=&offertype=266&offertag=0&activitycartype=0&cstencryptinfo=&encryptinfo=&userareaid=0&adfromid=0&fromtag=0&ext=%7B%22urltype%22%3A%22%22%7D&otherstatisticsext=%7B%22abtest0923%22%3A%22%22%2C%22carrange%22%3A1%2C%22cartype%22%3A70%2C%22dealertype%22%3A0%2C%22eventid%22%3A%22usc_2sc_mc_mclby_cydj_click%22%2C%22from%22%3A%22%E4%B8%BB%E5%88%97%E8%A1%A8%22%2C%22history%22%3A%22%E5%BA%95%E5%AF%BCbase%E8%B7%AF%22%2C%22is_remote%22%3A0%2C%22kindname%22%3A%22%22%2C%22location0923%22%3A1%2C%22name%22%3A%22%E6%90%9C%E7%B4%A2%22%2C%22offertype%22%3A266%2C%22pagetype%22%3A%22%E6%90%9C%E7%B4%A2sug%E6%8E%A8%E8%8D%90%22%2C%22pvareaid%22%3A%22108721%22%2C%22srecom%22%3A%22%1%22%7D"
             }
         ];
         
-        // 密码输入框回车提交
-        passwordInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const passwordScreen = document.getElementById('passwordScreen');
+            const mainContent = document.getElementById('mainContent');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordSubmit = document.getElementById('passwordSubmit');
+            const passwordError = document.getElementById('passwordError');
+            const bookmarkForm = document.getElementById('bookmarkForm');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const messageArea = document.getElementById('messageArea');
+            const bookmarkList = document.getElementById('bookmarkList');
+            
+            // 密码输入框回车提交
+            passwordInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    checkPassword();
+                }
+            });
+            
+            // 密码提交按钮点击事件
+            passwordSubmit.addEventListener('click', checkPassword);
+            
+            // 表单提交事件
+            bookmarkForm.addEventListener('submit', function(event) {
                 event.preventDefault();
-                checkPassword();
-            }
-        });
-        
-        // 提交按钮点击事件
-        passwordSubmit.addEventListener('click', checkPassword);
-        
-        // 下载按钮点击事件
-        downloadBtn.addEventListener('click', function() {
-            generateAndDownloadHTML();
-            showMessage('已生成新版HTML文件并开始下载！', 'success');
-        });
-        
-        // 检查密码函数
-        function checkPassword() {
-            const enteredPassword = passwordInput.value.trim();
+                addBookmark();
+            });
             
-            if (enteredPassword === CORRECT_PASSWORD) {
-                // 密码正确，显示主内容
-                passwordScreen.style.display = 'none';
-                mainContent.style.display = 'block';
-                passwordError.textContent = '';
-                passwordInput.value = '';
-                showMessage('密码验证成功！已进入书签管理。', 'success');
+            // 下载按钮点击事件
+            downloadBtn.addEventListener('click', downloadHTML);
+            
+            // 检查密码函数
+            function checkPassword() {
+                const enteredPassword = passwordInput.value.trim();
                 
-                // 渲染书签列表
-                renderBookmarks();
-            } else {
-                // 密码错误
-                passwordError.textContent = '密码错误，请重试';
-                passwordInput.value = '';
-                passwordInput.focus();
-                
-                // 添加错误动画效果
-                passwordInput.style.borderColor = '#f44336';
+                if (enteredPassword === CORRECT_PASSWORD) {
+                    // 密码正确，显示主内容
+                    passwordScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    passwordError.textContent = '';
+                    passwordInput.value = '';
+                    
+                    showMessage('密码验证成功！已进入书签管理。', 'success');
+                } else {
+                    // 密码错误
+                    passwordError.textContent = '密码错误，请重试';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            
+            // 显示消息函数
+            function showMessage(text, type = 'info') {
+                messageArea.innerHTML = `<div class="message ${type}">${text}</div>`;
                 setTimeout(() => {
-                    passwordInput.style.borderColor = '#ffb6c1';
-                }, 500);
-            }
-        }
-        
-        // 渲染书签列表
-        function renderBookmarks() {
-            const bookmarkList = document.getElementById('bookmarkList');
-            bookmarkList.innerHTML = '<p>'; // 清空现有内容但保留<p>标签结构
-            
-            bookmarks.forEach(bookmark => {
-                addBookmarkToDOM(bookmark.name, bookmark.url, false);
-            });
-        }
-        
-        // 显示消息
-        function showMessage(text, type = 'info') {
-            messageArea.innerHTML = `<div class="message ${type}">${text}</div>`;
-            setTimeout(() => {
-                messageArea.innerHTML = '';
-            }, 3000);
-        }
-        
-        // 书签表单提交处理
-        document.getElementById('bookmarkForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('bookmarkName').value.trim();
-            const url = document.getElementById('bookmarkUrl').value.trim();
-            
-            // 基本验证
-            if (!name || !url) {
-                showMessage('请填写书签名和网址', 'info');
-                return;
+                    messageArea.innerHTML = '';
+                }, 3000);
             }
             
-            // 确保URL有协议前缀
-            let fullUrl = url;
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                fullUrl = 'https://' + url;
-            }
-            
-            // 添加到书签数组
-            bookmarks.push({ name, url: fullUrl });
-            
-            // 添加到DOM
-            addBookmarkToDOM(name, fullUrl);
-            
-            // 清空表单
-            document.getElementById('bookmarkName').value = '';
-            document.getElementById('bookmarkUrl').value = '';
-            
-            // 自动触发下载
-            setTimeout(() => {
-                generateAndDownloadHTML();
-            }, 500);
-        });
-        
-        // 将书签添加到DOM
-        function addBookmarkToDOM(name, url, showAlert = true) {
-            const bookmarkList = document.getElementById('bookmarkList');
-            
-            // 创建新的书签元素
-            const newBookmark = document.createElement('DT');
-            const newLink = document.createElement('A');
-            newLink.href = url;
-            newLink.textContent = name;
-            newLink.target = "_blank"; // 在新标签页打开
-            newBookmark.appendChild(newLink);
-            
-            // 将新书签插入到列表容器中
-            bookmarkList.appendChild(newBookmark);
-            
-            if (showAlert) {
-                showMessage(`书签 "${name}" 已添加！正在下载新版HTML文件...`, 'success');
-            }
-        }
-        
-        // 生成并下载HTML文件
-        function generateAndDownloadHTML() {
-            // 构建书签列表HTML
-            let bookmarkListHTML = '';
-            bookmarks.forEach(bookmark => {
-                bookmarkListHTML += `        <DT><A HREF="${escapeHTML(bookmark.url)}">${escapeHTML(bookmark.name)}</A>\n`;
-            });
-            
-            // 构建完整的HTML文件内容
-            const htmlContent = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
-<!-- This is an automatically generated file. -->
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<TITLE>书签收藏夹 (自动下载版)</TITLE>
-<style>
-    /* 密码输入界面样式 */
-    #passwordScreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #ffe6f2, #fff8e1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        flex-direction: column;
-    }
-    
-    .password-container {
-        background-color: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-    }
-    
-    .password-container h2 {
-        color: #e91e63;
-        margin-bottom: 10px;
-    }
-    
-    .password-container p {
-        color: #666;
-        margin-bottom: 30px;
-    }
-    
-    .password-input {
-        width: 100%;
-        padding: 15px;
-        border: 2px solid #ffb6c1;
-        border-radius: 25px;
-        font-size: 16px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        text-align: center;
-        transition: all 0.3s;
-    }
-    
-    .password-input:focus {
-        border-color: #ff4081;
-        outline: none;
-        box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
-    }
-    
-    .password-btn {
-        background: linear-gradient(135deg, #ff4081, #ff79b0);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 15px 40px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-        width: 100%;
-    }
-    
-    .password-btn:hover {
-        background: linear-gradient(135deg, #f50057, #ff4081);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
-    }
-    
-    .error-message {
-        color: #f44336;
-        margin-top: 10px;
-        font-size: 14px;
-        min-height: 20px;
-    }
-    
-    /* 主页面样式（默认隐藏） */
-    #mainContent {
-        display: none;
-    }
-    
-    /* 整体样式 */
-    body {
-        background-color: #ffe6f2;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 20px;
-        min-height: 100vh;
-    }
-    
-    h1 {
-        color: #d81b60;
-        text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #ffccd5;
-    }
-    
-    #addBookmarkArea {
-        background-color: #fff8e1;
-        border: 2px solid #ffccbc;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-    }
-    
-    #addBookmarkArea h3 {
-        color: #e91e63;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-    
-    .controls {
-        background-color: #fff8e1;
-        border: 2px solid #ffccbc;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-        text-align: center;
-    }
-    
-    .controls h3 {
-        color: #e91e63;
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-    
-    label {
-        display: inline-block;
-        width: 80px;
-        color: #d81b60;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    
-    input[type="text"],
-    input[type="url"] {
-        padding: 10px 15px;
-        border: 2px solid #ffb6c1;
-        border-radius: 25px;
-        font-size: 14px;
-        width: 300px;
-        background-color: white;
-        transition: all 0.3s;
-        box-sizing: border-box;
-    }
-    
-    input[type="text"]:focus,
-    input[type="url"]:focus {
-        border-color: #ff4081;
-        outline: none;
-        box-shadow: 0 0 8px rgba(255, 64, 129, 0.3);
-    }
-    
-    button {
-        background: linear-gradient(135deg, #ff4081, #ff79b0);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 12px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-        margin: 5px;
-    }
-    
-    button:hover {
-        background: linear-gradient(135deg, #f50057, #ff4081);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
-    }
-    
-    .download-btn {
-        background: linear-gradient(135deg, #4CAF50, #81C784);
-    }
-    
-    .download-btn:hover {
-        background: linear-gradient(135deg, #388E3C, #4CAF50);
-    }
-    
-    .message {
-        padding: 10px 15px;
-        border-radius: 10px;
-        margin: 10px 0;
-        text-align: center;
-        font-weight: bold;
-    }
-    
-    .success {
-        background-color: #e8f5e9;
-        color: #2e7d32;
-        border: 1px solid #c8e6c9;
-    }
-    
-    .info {
-        background-color: #e3f2fd;
-        color: #1565c0;
-        border: 1px solid #bbdefb;
-    }
-    
-    .warning {
-        background-color: #fff3e0;
-        color: #ef6c00;
-        border: 1px solid #ffcc80;
-    }
-    
-    h3:not(#addBookmarkArea h3):not(.controls h3) {
-        color: #d81b60;
-        padding-left: 10px;
-        border-left: 4px solid #ff4081;
-    }
-    
-    #bookmarkList {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
-    }
-    
-    DT {
-        padding: 8px 0;
-        border-bottom: 1px dashed #ffccd5;
-    }
-    
-    A {
-        color: #e91e63;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: all 0.2s;
-        display: inline-block;
-    }
-    
-    A:hover {
-        background-color: #fff0f6;
-        color: #c2185b;
-        text-decoration: underline;
-    }
-</style>
-
-<!-- 密码输入界面 -->
-<div id="passwordScreen">
-    <div class="password-container">
-        <h2>🔒 密码验证</h2>
-        <p>请输入密码查看和编辑书签内容</p>
-        <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
-        <button id="passwordSubmit" class="password-btn">进入书签管理</button>
-        <div id="passwordError" class="error-message"></div>
-    </div>
-</div>
-
-<!-- 主内容区域（默认隐藏） -->
-<div id="mainContent">
-    <H1>书签收藏夹 (自动下载版)</H1>
-    
-    <!-- 控制按钮区域 -->
-    <div class="controls">
-        <h3>数据管理</h3>
-        <button id="downloadBtn" class="download-btn">💾 下载当前书签为HTML文件</button>
-        <div class="message warning" style="margin-top: 15px;">
-            💡 <strong>使用说明：</strong>添加书签后，请点击上方按钮下载新版HTML文件。下载的文件可用于替换您GitHub仓库中的旧文件。
-        </div>
-    </div>
-    
-    <!-- 添加书签的功能区 -->
-    <div id="addBookmarkArea">
-        <h3>添加新书签</h3>
-        <form id="bookmarkForm">
-            <label for="bookmarkName">书签名：</label>
-            <input type="text" id="bookmarkName" placeholder="例如：GitHub" required>
-            <br><br>
-            
-            <label for="bookmarkUrl">网址 (URL)：</label>
-            <input type="url" id="bookmarkUrl" placeholder="https://example.com" required>
-            <br><br>
-            
-            <button type="submit">添加书签</button>
-        </form>
-    </div>
-
-    <!-- 书签列表 -->
-    <H3>我的书签列表</H3>
-    <div id="messageArea"></div>
-    <DL id="bookmarkList">
-        <p>
-${bookmarkListHTML}    </DL>
-</div>
-
-<script>
-    // 等待页面完全加载后再执行初始化
-    document.addEventListener('DOMContentLoaded', function() {
-        // 密码验证相关
-        const CORRECT_PASSWORD = "normanlin1!";
-        const passwordScreen = document.getElementById('passwordScreen');
-        const mainContent = document.getElementById('mainContent');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordSubmit = document.getElementById('passwordSubmit');
-        const passwordError = document.getElementById('passwordError');
-        const messageArea = document.getElementById('messageArea');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
-        // 存储所有书签
-        let bookmarks = ${JSON.stringify(bookmarks)};
-        
-        // 密码输入框回车提交
-        passwordInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                checkPassword();
-            }
-        });
-        
-        // 提交按钮点击事件
-        passwordSubmit.addEventListener('click', checkPassword);
-        
-        // 下载按钮点击事件
-        downloadBtn.addEventListener('click', function() {
-            generateAndDownloadHTML();
-            showMessage('已生成新版HTML文件并开始下载！', 'success');
-        });
-        
-        // 检查密码函数
-        function checkPassword() {
-            const enteredPassword = passwordInput.value.trim();
-            
-            if (enteredPassword === CORRECT_PASSWORD) {
-                // 密码正确，显示主内容
-                passwordScreen.style.display = 'none';
-                mainContent.style.display = 'block';
-                passwordError.textContent = '';
-                passwordInput.value = '';
-                showMessage('密码验证成功！已进入书签管理。', 'success');
+            // 添加书签函数
+            function addBookmark() {
+                const name = document.getElementById('bookmarkName').value.trim();
+                const url = document.getElementById('bookmarkUrl').value.trim();
                 
-                // 渲染书签列表
-                renderBookmarks();
-            } else {
-                // 密码错误
-                passwordError.textContent = '密码错误，请重试';
-                passwordInput.value = '';
-                passwordInput.focus();
+                if (!name || !url) {
+                    showMessage('请填写书签名和网址', 'info');
+                    return;
+                }
                 
-                // 添加错误动画效果
-                passwordInput.style.borderColor = '#f44336';
-                setTimeout(() => {
-                    passwordInput.style.borderColor = '#ffb6c1';
-                }, 500);
-            }
-        }
-        
-        // 渲染书签列表
-        function renderBookmarks() {
-            const bookmarkList = document.getElementById('bookmarkList');
-            bookmarkList.innerHTML = '<p>'; // 清空现有内容但保留<p>标签结构
-            
-            bookmarks.forEach(bookmark => {
-                addBookmarkToDOM(bookmark.name, bookmark.url, false);
-            });
-        }
-        
-        // 显示消息
-        function showMessage(text, type = 'info') {
-            messageArea.innerHTML = \`<div class="message \${type}">\${text}</div>\`;
-            setTimeout(() => {
-                messageArea.innerHTML = '';
-            }, 3000);
-        }
-        
-        // 书签表单提交处理
-        document.getElementById('bookmarkForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('bookmarkName').value.trim();
-            const url = document.getElementById('bookmarkUrl').value.trim();
-            
-            // 基本验证
-            if (!name || !url) {
-                showMessage('请填写书签名和网址', 'info');
-                return;
+                // 确保URL有协议前缀
+                let fullUrl = url;
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    fullUrl = 'https://' + url;
+                }
+                
+                // 添加到书签数组
+                allBookmarks.push({ name: name, url: fullUrl });
+                
+                // 添加到DOM
+                const bookmarkItem = document.createElement('div');
+                bookmarkItem.className = 'bookmark-item';
+                bookmarkItem.innerHTML = `
+                    <a href="${fullUrl}" class="bookmark-link" target="_blank">${name}</a>
+                `;
+                bookmarkList.appendChild(bookmarkItem);
+                
+                // 清空表单
+                document.getElementById('bookmarkName').value = '';
+                document.getElementById('bookmarkUrl').value = '';
+                
+                showMessage(`书签 "${name}" 已添加！`, 'success');
+                
+                // 自动触发下载
+                setTimeout(downloadHTML, 500);
             }
             
-            // 确保URL有协议前缀
-            let fullUrl = url;
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                fullUrl = 'https://' + url;
-            }
-            
-            // 添加到书签数组
-            bookmarks.push({ name, url: fullUrl });
-            
-            // 添加到DOM
-            addBookmarkToDOM(name, fullUrl);
-            
-            // 清空表单
-            document.getElementById('bookmarkName').value = '';
-            document.getElementById('bookmarkUrl').value = '';
-            
-            // 自动触发下载
-            setTimeout(() => {
-                generateAndDownloadHTML();
-            }, 500);
+            // 下载HTML文件函数
+            function downloadHTML() {
+                // 构建书签列表HTML
+                let bookmarkItemsHTML = '';
+                allBookmarks.forEach(bookmark => {
+                    bookmarkItemsHTML += `
+                    <div class="bookmark-item">
+                        <a href="${escapeHTML(bookmark.url)}" class="bookmark-link" target="_blank">
+                            ${escapeHTML(bookmark.name)}
+                        </a>
+                    </div>`;
+                });
+                
+                // 构建完整的HTML文件内容
+                const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>书签收藏夹</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffccd5;
+        }
+        
+        #bookmarkList {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .bookmark-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ffccd5;
+        }
+        
+        .bookmark-link {
+            color: #e91e63;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .bookmark-link:hover {
+            background-color: #fff0f6;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>书签收藏夹</h1>
+    
+    <h3>我的书签列表</h3>
+    <div id="bookmarkList">
+        ${bookmarkItemsHTML}
+    </div>
+    
+    <script>
+        // 简单的页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('书签页面已加载，共' + document.querySelectorAll('.bookmark-item').length + '个书签');
         });
-        
-        // 将书签添加到DOM
-        function addBookmarkToDOM(name, url, showAlert = true) {
-            const bookmarkList = document.getElementById('bookmarkList');
-            
-            // 创建新的书签元素
-            const newBookmark = document.createElement('DT');
-            const newLink = document.createElement('A');
-            newLink.href = url;
-            newLink.textContent = name;
-            newLink.target = "_blank"; // 在新标签页打开
-            newBookmark.appendChild(newLink);
-            
-            // 将新书签插入到列表容器中
-            bookmarkList.appendChild(newBookmark);
-            
-            if (showAlert) {
-                showMessage(\`书签 "\${name}" 已添加！正在下载新版HTML文件...\`, 'success');
+    <\/script>
+</body>
+</html>`;
+                
+                // 创建下载链接
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '书签收藏夹.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showMessage('HTML文件已下载！请用此文件替换GitHub上的旧文件。', 'success');
             }
-        }
-        
-        // 生成并下载HTML文件
-        function generateAndDownloadHTML() {
-            // 构建书签列表HTML
-            let bookmarkListHTML = '';
-            bookmarks.forEach(bookmark => {
-                bookmarkListHTML += \`        <DT><A HREF="\${escapeHTML(bookmark.url)}">\${escapeHTML(bookmark.name)}</A>\\n\`;
-            });
             
-            // 构建完整的HTML文件内容
-            const htmlContent = \`...完整HTML代码...\`;
+            // HTML转义函数
+            function escapeHTML(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
             
-            // 创建下载链接
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '书签收藏夹_自动下载版.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        // 辅助函数：转义HTML特殊字符
-        function escapeHTML(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    });
-</script>`;
-            
-            // 创建下载链接
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '书签收藏夹_自动下载版.html'; // 固定文件名
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        // 辅助函数：转义HTML特殊字符
-        function escapeHTML(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // 初始焦点设置在密码输入框
-        passwordInput.focus();
-    });
-</script>
+            // 初始焦点设置在密码输入框
+            passwordInput.focus();
+        });
+    </script>
+</body>
+</html>
