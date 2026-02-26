@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <title>我的书签收藏夹 (密码保护版)</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
      crossorigin="anonymous"></script>
-    <title>我的书签收藏夹 (密码保护版)</title>
     <style>
         /* 整体样式 */
         body {
@@ -224,6 +224,13 @@
             padding: 40px 20px;
             font-style: italic;
         }
+        
+        /* 广告容器样式 */
+        .ad-container {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 1200px;
+        }
     </style>
 </head>
 <body>
@@ -232,18 +239,6 @@
         <div class="password-box">
             <h2>🔒 密码验证</h2>
             <p>请输入密码查看和编辑书签内容</p>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
-     crossorigin="anonymous"></script>
-<!-- 广告 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2576884527497195"
-     data-ad-slot="7670752513"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
             <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
             <button id="passwordSubmit" class="password-btn">进入书签管理</button>
             <div id="passwordError" class="error-message"></div>
@@ -253,6 +248,22 @@
     <!-- 主内容区域 -->
     <div id="mainContent">
         <h1>我的书签收藏夹</h1>
+        
+        <!-- 广告区域 -->
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
+                crossorigin="anonymous"></script>
+            <!-- 广告 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-2576884527195"
+                data-ad-slot="7670752513"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         
         <!-- 添加书签区域 -->
         <div id="addBookmarkArea">
@@ -272,7 +283,7 @@
                 <button type="button" id="downloadBtn" class="download-btn">💾 下载HTML文件</button>
             </form>
             <div class="message info" style="margin-top: 15px;">
-                💡 <strong>使用说明：</strong>添加书签后点击下载按钮，将下载的HTML文件上传到GitHub即可
+                💡 <strong>使用说明：</strong>添加书签后，需要时请手动点击"下载HTML文件"按钮
             </div>
         </div>
 
@@ -398,10 +409,7 @@
                 document.getElementById('bookmarkName').value = '';
                 document.getElementById('bookmarkUrl').value = '';
                 
-                showMessage(`书签 "${name}" 已添加！`, 'success');
-                
-                // 自动触发下载
-                setTimeout(downloadHTML, 500);
+                showMessage(`书签 "${name}" 已添加成功！`, 'success');
             }
             
             // 下载HTML文件函数
@@ -422,12 +430,14 @@
                     </div>`;
                 });
                 
-                // 构建完整的HTML文件内容（包含密码验证）
+                // 构建完整的HTML文件内容（包含密码验证和广告）
                 const htmlContent = `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>我的书签收藏夹 (密码保护版)</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
+     crossorigin="anonymous"><\/script>
     <style>
         body {
             background-color: #ffe6f2;
@@ -550,7 +560,13 @@
             padding: 40px 20px;
             font-style: italic;
         }
-    </style>
+        
+        .ad-container {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 1200px;
+        }
+    <\/style>
 </head>
 <body>
     <div id="passwordScreen">
@@ -565,6 +581,22 @@
 
     <div id="mainContent">
         <h1>我的书签收藏夹</h1>
+        
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
+                crossorigin="anonymous"><\/script>
+            <!-- 广告 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-2576884527195"
+                data-ad-slot="7670752513"
+                data-ad-format="auto"
+                data-full-width-responsive="true"><\/ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            <\/script>
+        </div>
+        
         <h3>我的书签列表</h3>
         <div id="bookmarkList">
             ${bookmarkItemsHTML}
