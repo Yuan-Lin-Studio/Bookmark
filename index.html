@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>我的书签收藏夹 (密码保护版)</title>
+    <title>书签收藏夹 (密码保护版)</title>
+    <!-- 第一段广告代码 - 原样放在head中 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
      crossorigin="anonymous"></script>
     <style>
@@ -95,6 +96,13 @@
             margin-bottom: 30px;
             padding-bottom: 10px;
             border-bottom: 2px solid #ffccd5;
+        }
+        
+        /* 广告容器样式 */
+        .ad-container {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 1200px;
         }
         
         /* 表单区域 */
@@ -224,13 +232,6 @@
             padding: 40px 20px;
             font-style: italic;
         }
-        
-        /* 广告容器样式 */
-        .ad-container {
-            margin: 20px auto;
-            text-align: center;
-            max-width: 1200px;
-        }
     </style>
 </head>
 <body>
@@ -249,25 +250,32 @@
     <div id="mainContent">
         <h1>我的书签收藏夹</h1>
         
-        <!-- 广告区域 -->
-        <div class="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
-                crossorigin="anonymous"></script>
-            <!-- 广告 -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-2576884527195"
-                data-ad-slot="7670752513"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <!-- 第二段广告代码 - 原样放在body中h1标题下面 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
+     crossorigin="anonymous"></script>
+        <!-- 广告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2576884527497195"
+             data-ad-slot="7670752513"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        
+        <!-- 控制区域 -->
+        <div class="controls">
+            <h3>📁 文件管理</h3>
+            <button id="downloadBtn" class="download-btn">💾 下载HTML文件</button>
+            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                <strong>说明：</strong>下载的文件包含所有书签和完整功能
+            </p>
         </div>
         
         <!-- 添加书签区域 -->
         <div id="addBookmarkArea">
-            <h3>添加新书签</h3>
+            <h3>➕ 添加新书签</h3>
             <form id="bookmarkForm">
                 <div class="form-group">
                     <label for="bookmarkName">书签名：</label>
@@ -280,28 +288,91 @@
                 </div>
                 
                 <button type="submit">添加书签</button>
-                <button type="button" id="downloadBtn" class="download-btn">💾 下载HTML文件</button>
             </form>
-            <div class="message info" style="margin-top: 15px;">
-                💡 <strong>使用说明：</strong>添加书签后，需要时请手动点击"下载HTML文件"按钮
-            </div>
         </div>
 
         <!-- 书签列表 -->
-        <h3>我的书签列表</h3>
+        <h3>📋 我的书签列表</h3>
         <div id="messageArea"></div>
         <div id="bookmarkList">
-            <div class="empty-state" id="emptyMessage">
-                暂无书签，请添加您的第一个书签
+            <!-- 17个书签数据 -->
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10167265075182.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjMlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">窗帘￥20.4</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10157138052887.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjglMjNza3VfY2FyZA" class="bookmark-link" target="_blank">前后遮阳档￥26</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10205575674878.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjUlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">电热杯￥149.00</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10189978691734.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">折叠小桌板￥43.3</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10194959691284.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjUlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">便携洗衣液￥7.80</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/100043766765.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">免洗洗手液￥13.9</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10162158837612.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA&amp;purchasetab=gfgm" class="bookmark-link" target="_blank">迷你洗衣机￥59.9</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10182653015113.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">便携式水桶￥26.63</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10117372494220.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjYlMjNza3VfY2FyZA" class="bookmark-link" target="_blank">车载晾衣绳￥7.19</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10136108594177.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIxJTIzc2t1X2NhcmQ&amp;pcdk=Y2kJUWAlxIy4sEBmgRQCQPIVmtboHib7DfHmfGOWtdc6jlQ4qJUwWhgTWFij5EvJ.rQ4a.tlbT" class="bookmark-link" target="_blank">充电宝￥32.90</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/100123706889.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMDEyMzcwNjg4OSIsInRzIjoiMTc3MjA3NDc1MCIsInVuaXFpZCI6IntcImNsaWNrX2lkXCI6XCIyOWVmOTQ5YS05ZDY4LTRlY2EtODhiOC1kZWVlYzNkNWQxZTVcIixcIm1hdGVyaWFsX2lkXCI6XCI4MzUyNjI0MDA3OTQ0MDAwNzU2XCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCIyM2E4YzRlNy0zMTVjLTQyNjItODNmMC1jMzBiODJkZjgzZGFcIn0ifQ%3D%3D&amp;jd_pop=29ef949a-9d68-4eca-88b8-deeec3d5d1e5&amp;abt=0" class="bookmark-link" target="_blank">太阳能充电板￥499.00</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10101432094423.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMTAxNDMyMDk0NDIxIiwidHMiOiIxNzcyMDc0NTM1IiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjBiMTI3NjAhLTk3YTctNDA3ZC1iZDQ5LTg4ZjFmZmNjZDI4Y1wiLFwibWF0ZXJpYWxfaWRcIjpcIjIwODEyMjQxOTYxXCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCIxOWZjNmZkYi02ZWQxLTQ0MmUtYjlmZC00MWU5NTcyNjUzYWFcIn0ifQ%3D%3D&amp;jd_pop=0b12760a-97a7-407d-bd49-88f1ffccd28c&amp;abt=0&amp;pcdk=skXrTiFHktsbR7D_kAb5TqO_PBQjxvOEN1vX2_uUtZkXooGWY2RP9k1iJp1eKoZ0.rQ4a.tlbT" class="bookmark-link" target="_blank">三头大风扇￥46.4</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10210078148003.html?extension_id=eyJhZCI6IjQ2NyIsImNoIjoiMiIsInNrdSI6IjEwMjEwMDc4MTQ4MDAzIiwidHMiOiIxNzcyMDc0MzQzIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjZhNDZmMWY0LWQ4ZWMtNGIzZi05ZTkyLWY2Y2I2MGI5MmEwNFwiLFwibWF0ZXJpYWxfaWRcIjpcIjY3MzQzNzAxMjkzXCIsXCJwb3NfaWRcIjpcIjQ2N1wiLFwic2lkXCI6XCJlN2FmNDM0MC1hYjA3LTQ4ODktYjhjYi1mOWQwNjZmN2MwZTVcIn0ifQ%3D%3D&amp;jd_pop=6a46f1f4-d8ec-4b3f-9e92-f6cb60b92a04&amp;abt=0" class="bookmark-link" target="_blank">便携式马桶￥46.63</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/100105927279.html?extension_id=eyJhZCI6IiIsImNoIjoiIiwic2hvcCI6IiIsInNrdSI6IiIsInRzIjoiIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjI5NzNhOWU0LWM2MWItNDNkNS1iZDFhLTBmNzIwNzJmMTM5ZVwiLFwicG9zX2lkXCI6XCIyNjE3XCIsXCJzaWRcIjpcImU1NzJjMjQxLWMyYTMtNGI2Zi1hNmU5LWY1OGVjMjVlYTZhOFwiLFwic2t1X2lkXCI6XCIxMDAxMjMyMTMzMTZcIn0ifQ%3D%3D&amp;jd_pop=2973a9e4-c61b-43d5-bd1a-0f72072f139e&amp;pcdk=yKhKwwnR1FAgldVCm8BqymnpOTM5tlf2P9OdfTVQQgZNVC4zqrV0aGMEee9T0Ay3.rQ4a.tlbT" class="bookmark-link" target="_blank">车载床垫￥135</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10171511491193.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMTcxNTExNDkxMTkzIiwidHMiOiIxNzcyMDczNzk4IiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcImJmODI2N2FiLTRlOGQtNDBmOS1hMGVjLWZjM2RjY2IwNzRhOFwiLFwibWF0ZXJpYWxfaWRcIjpcIjgwOTgwMzY1OTcyNzA5MDM5MTJcIixcInBvc19pZFwiOlwiMjY4XCIsXCJzaWRcIjpcIjc5N2ZlN2IzLTYyYTEtNDIwYi04MTk1LWMxMWI5ZGRhYzExOFwifSJ9&amp;jd_pop=bf8267ab-4e8d-40f9-a0ec-fc3dccb074a8&amp;abt=0" class="bookmark-link" target="_blank">免洗沐浴露￥208</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://www.che168.com/dealer/596178/56903102.html?pvareaid=100519&amp;userpid=0&amp;usercid=0&amp;offertype=&amp;offertag=0&amp;activitycartype=0&amp;fromsxmlist=0&amp;platfrom=36#pos=26#page=1#rtype=10#isrecom=0#filter=29#module=10#refreshid=0#recomid=0#queryid=1772016741$0$775AD01E-8329-4D7F-8A9C-7B428C181B41$41177$3#cartype=70" class="bookmark-link" target="_blank">Passat领驭 2007款 1.8T 自动豪华型 ¥9999</a>
+            </div>
+            <div class="bookmark-item">
+                <a href="https://item.jd.com/10210079351128.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMjEwMDc5MzUxMTI4IiwidHMiOiIxNzcyMDczNzEzIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjgyMWZjMWNmLWU1NzAtNDE2ZC04NmQ2LTgxZDk2YWU4YzFlM3wiLFwibWF0ZXJpYWxfaWRcIjpcIjY3MjkzMjA0NDA3XCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCJiMjlmNThlMC1jMDMzLTRkOWUtYmZiNC01NWY4ZTZkMmZjN2FcIn0ifQ%3D%3D&amp;jd_pop=821fc1cf-e570-416d-86d6-81d96ae8c1e3&amp;abt=0" class="bookmark-link" target="_blank">免洗洗发水￥37.9</a>
             </div>
         </div>
     </div>
 
     <script>
-        // 存储所有书签的数组
-        let allBookmarks = [];
+        // 存储所有书签的数组（包含17个初始书签）
+        let allBookmarks = [
+            {name: "窗帘￥20.4", url: "https://item.jd.com/10167265075182.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjMlMjNza3VfY2FyZA"},
+            {name: "前后遮阳档￥26", url: "https://item.jd.com/10157138052887.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjglMjNza3VfY2FyZA"},
+            {name: "电热杯￥149.00", url: "https://item.jd.com/10205575674878.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjUlMjNza3VfY2FyZA"},
+            {name: "折叠小桌板￥43.3", url: "https://item.jd.com/10189978691734.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA"},
+            {name: "便携洗衣液￥7.80", url: "https://item.jd.com/10194959691284.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjUlMjNza3VfY2FyZA"},
+            {name: "免洗洗手液￥13.9", url: "https://item.jd.com/100043766765.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA"},
+            {name: "迷你洗衣机￥59.9", url: "https://item.jd.com/10162158837612.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA&amp;purchasetab=gfgm"},
+            {name: "便携式水桶￥26.63", url: "https://item.jd.com/10182653015113.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIlMjNza3VfY2FyZA"},
+            {name: "车载晾衣绳￥7.19", url: "https://item.jd.com/10117372494220.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjYlMjNza3VfY2FyZA"},
+            {name: "充电宝￥32.90", url: "https://item.jd.com/10136108594177.html?spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDcyMTAuc2VhcmNoX2J1dHRvbiUyQ2EwMjQwLmIwMDI0OTMuYzAwMDA0MDI3LjIxJTIzc2t1X2NhcmQ&amp;pcdk=Y2kJUWAlxIy4sEBmgRQCQPIVmtboHib7DfHmfGOWtdc6jlQ4qJUwWhgTWFij5EvJ.rQ4a.tlbT"},
+            {name: "太阳能充电板￥499.00", url: "https://item.jd.com/100123706889.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMDEyMzcwNjg4OSIsInRzIjoiMTc3MjA3NDc1MCIsInVuaXFpZCI6IntcImNsaWNrX2lkXCI6XCIyOWVmOTQ5YS05ZDY4LTRlY2EtODhiOC1kZWVlYzNkNWQxZTVcIixcIm1hdGVyaWFsX2lkXCI6XCI4MzUyNjI0MDA3OTQ0MDAwNzU2XCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCIyM2E4YzRlNy0zMTVjLTQyNjItODNmMC1jMzBiODJkZjgzZGFcIn0ifQ%3D%3D&amp;jd_pop=29ef949a-9d68-4eca-88b8-deeec3d5d1e5&amp;abt=0"},
+            {name: "三头大风扇￥46.4", url: "https://item.jd.com/10101432094423.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMTAxNDMyMDk0NDIxIiwidHMiOiIxNzcyMDc0NTM1IiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjBiMTI3NjBhLTk3YTctNDA3ZC1iZDQ5LTg4ZjFmZmNjZDI4Y1wiLFwibWF0ZXJpYWxfaWRcIjpcIjIwODEyMjQxOTYxXCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCIxOWZjNmZkYi02ZWQxLTQ0MmUtYjlmZC00MWU5NTcyNjUzYWFcIn0ifQ%3D%3D&amp;jd_pop=0b12760a-97a7-407d-bd49-88f1ffccd28c&amp;abt=0&amp;pcdk=skXrTiFHktsbR7D_kAb5TqO_PBQjxvOEN1vX2_uUtZkXooGWY2RP9k1iJp1eKoZ0.rQ4a.tlbT"},
+            {name: "便携式马桶￥46.63", url: "https://item.jd.com/10210078148003.html?extension_id=eyJhZCI6IjQ2NyIsImNoIjoiMiIsInNrdSI6IjEwMjEwMDc4MTQ4MDAzIiwidHMiOiIxNzcyMDc0MzQzIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjZhNDZmMWY0LWQ4ZWMtNGIzZi05ZTkyLWY2Y2I2MGI5MmEwNFwiLFwibWF0ZXJpYWxfaWRcIjpcIjY3MzQzNzAxMjkzXCIsXCJwb3NfaWRcIjpcIjQ2N1wiLFwic2lkXCI6XCJlN2FmNDM0MC1hYjA3LTQ4ODktYjhjYi1mOWQwNjZmN2MwZTVcIn0ifQ%3D%3D&amp;jd_pop=6a46f1f4-d8ec-4b3f-9e92-f6cb60b92a04&amp;abt=0"},
+            {name: "车载床垫￥135", url: "https://item.jd.com/100105927279.html?extension_id=eyJhZCI6IiIsImNoIjoiIiwic2hvcCI6IiIsInNrdSI6IiIsInRzIjoiIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjI5NzNhOWU0LWM2MWItNDNkNS1iZDFhLTBmNzIwNzJmMTM5ZVwiLFwicG9zX2lkXCI6XCIyNjE3XCIsXCJzaWRcIjpcImU1NzJjMjQxLWMyYTMtNGI2Zi1hNmU5LWY1OGVjMjVlYTZhOFwiLFwic2t1X2lkXCI6XCIxMDAxMjMyMTMzMTZcIn0ifQ%3D%3D&amp;jd_pop=2973a9e4-c61b-43d5-bd1a-0f72072f139e&amp;pcdk=yKhKwwnR1FAgldVCm8BqymnpOTM5tlf2P9OdfTVQQgZNVC4zqrV0aGMEee9T0Ay3.rQ4a.tlbT"},
+            {name: "免洗沐浴露￥208", url: "https://item.jd.com/10171511491193.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMTcxNTExNDkxMTkzIiwidHMiOiIxNzcyMDczNzk4IiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcImJmODI2N2FiLTRlOGQtNDBmOS1hMGVjLWZjM2RjY2IwNzRhOFwiLFwibWF0ZXJpYWxfaWRcIjpcIjgwOTgwMzY1OTcyNzA5MDM5MTJcIixcInBvc19pZFwiOlwiMjY4XCIsXCJzaWRcIjpcIjc5N2ZlN2IzLTYyYTEtNDIwYi04MTk1LWMxMWI5ZGRhYzExOFwifSJ9&amp;jd_pop=bf8267ab-4e8d-40f9-a0ec-fc3dccb074a8&amp;abt=0"},
+            {name: "Passat领驭 2007款 1.8T 自动豪华型 ¥9999", url: "https://www.che168.com/dealer/596178/56903102.html?pvareaid=100519&amp;userpid=0&amp;usercid=0&amp;offertype=&amp;offertag=0&amp;activitycartype=0&amp;fromsxmlist=0&amp;platfrom=36#pos=26#page=1#rtype=10#isrecom=0#filter=29#module=10#refreshid=0#recomid=0#queryid=1772016741$0$775AD01E-8329-4D7F-8A9C-7B428C181B41$41177$3#cartype=70"},
+            {name: "免洗洗发水￥37.9", url: "https://item.jd.com/10210079351128.html?extension_id=eyJhZCI6IjI2OCIsImNoIjoiMiIsInNrdSI6IjEwMjEwMDc5MzUxMTI4IiwidHMiOiIxNzcyMDczNzEzIiwidW5pcWlkIjoie1wiY2xpY2tfaWRcIjpcIjgyMWZjMWNmLWU1NzAtNDE2ZC04NmQ2LTgxZDk2YWU4YzFlM3wiLFwibWF0ZXJpYWxfaWRcIjpcIjY3MjkzMjA0NDA3XCIsXCJwb3NfaWRcIjpcIjI2OFwiLFwic2lkXCI6XCJiMjlmNThlMC1jMDMzLTRkOWUtYmZiNC01NWY4ZTZkMmZjN2FcIn0ifQ%3D%3D&amp;jd_pop=821fc1cf-e570-416d-86d6-81d96ae8c1e3&amp;abt=0"}
+        ];
         
-        // 密码验证相关（密码不在界面显示）
+        // 密码验证相关
         const CORRECT_PASSWORD = "normanlin1!";
         
         // 页面加载完成后初始化
@@ -316,7 +387,6 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const messageArea = document.getElementById('messageArea');
             const bookmarkList = document.getElementById('bookmarkList');
-            const emptyMessage = document.getElementById('emptyMessage');
             
             // 密码输入框回车提交
             passwordInput.addEventListener('keypress', function(event) {
@@ -358,15 +428,6 @@
                 }
             }
             
-            // 更新空状态显示
-            function updateEmptyState() {
-                if (allBookmarks.length === 0) {
-                    emptyMessage.style.display = 'block';
-                } else {
-                    emptyMessage.style.display = 'none';
-                }
-            }
-            
             // 显示消息函数
             function showMessage(text, type = 'info') {
                 messageArea.innerHTML = `<div class="message ${type}">${text}</div>`;
@@ -402,9 +463,6 @@
                 `;
                 bookmarkList.appendChild(bookmarkItem);
                 
-                // 更新空状态
-                updateEmptyState();
-                
                 // 清空表单
                 document.getElementById('bookmarkName').value = '';
                 document.getElementById('bookmarkUrl').value = '';
@@ -435,8 +493,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>我的书签收藏夹 (密码保护版)</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
+    <title>书签收藏夹 (密码保护版)</title>
+    <!-- 第一段广告代码 - 原样放在head中 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
      crossorigin="anonymous"><\/script>
     <style>
         body {
@@ -527,6 +586,12 @@
             border-bottom: 2px solid #ffccd5;
         }
         
+        .ad-container {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 1200px;
+        }
+        
         #bookmarkList {
             background-color: white;
             border-radius: 10px;
@@ -560,48 +625,41 @@
             padding: 40px 20px;
             font-style: italic;
         }
-        
-        .ad-container {
-            margin: 20px auto;
-            text-align: center;
-            max-width: 1200px;
-        }
     <\/style>
 </head>
 <body>
     <div id="passwordScreen">
         <div class="password-box">
-            <h2>🔒 密码验证</h2>
-            <p>请输入密码查看书签内容</p>
+            <h2>🔒 密码验证<\/h2>
+            <p>请输入密码查看书签内容<\/p>
             <input type="password" id="passwordInput" class="password-input" placeholder="请输入密码" autocomplete="off">
-            <button id="passwordSubmit" class="password-btn">查看书签</button>
-            <div id="passwordError" class="error-message"></div>
-        </div>
-    </div>
+            <button id="passwordSubmit" class="password-btn">查看书签<\/button>
+            <div id="passwordError" class="error-message"><\/div>
+        <\/div>
+    <\/div>
 
     <div id="mainContent">
-        <h1>我的书签收藏夹</h1>
+        <h1>我的书签收藏夹<\/h1>
         
-        <div class="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527195"
-                crossorigin="anonymous"><\/script>
-            <!-- 广告 -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-2576884527195"
-                data-ad-slot="7670752513"
-                data-ad-format="auto"
-                data-full-width-responsive="true"><\/ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            <\/script>
-        </div>
+        <!-- 第二段广告代码 - 原样放在body中h1标题下面 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
+     crossorigin="anonymous"><\/script>
+        <!-- 广告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2576884527497195"
+             data-ad-slot="7670752513"
+             data-ad-format="auto"
+             data-full-width-responsive="true"><\/ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        <\/script>
         
-        <h3>我的书签列表</h3>
+        <h3>我的书签列表<\/h3>
         <div id="bookmarkList">
             ${bookmarkItemsHTML}
-        </div>
-    </div>
+        <\/div>
+    <\/div>
 
     <script>
         const CORRECT_PASSWORD = "normanlin1!";
@@ -640,8 +698,8 @@
             passwordInput.focus();
         });
     <\/script>
-</body>
-</html>`;
+<\/body>
+<\/html>`;
                 
                 // 创建下载链接
                 const blob = new Blob([htmlContent], { type: 'text/html' });
@@ -663,9 +721,6 @@
                 div.textContent = text;
                 return div.innerHTML;
             }
-            
-            // 初始更新空状态
-            updateEmptyState();
             
             // 初始焦点设置在密码输入框
             passwordInput.focus();
