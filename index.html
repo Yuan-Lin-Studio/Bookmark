@@ -7,9 +7,10 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2576884527497195"
      crossorigin="anonymous"></script>
     <style>
+        /* 粉色+浅蓝色+米黄色主题 */
         body {
-            background-color: #f0f8ff;
-            color: #333;
+            background-color: #fff8e1; /* 米黄色背景 */
+            color: #5d4037; /* 深棕色文字 */
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
@@ -22,15 +23,16 @@
             background-color: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+            border: 2px solid #e6f7ff; /* 浅蓝色边框 */
         }
         
         h1 {
-            color: #2c3e50;
+            color: #e91e63; /* 粉色标题 */
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #4fc3f7; /* 浅蓝色边框 */
         }
         
         .ad-container {
@@ -40,19 +42,19 @@
         }
         
         .upload-section {
-            background-color: #f8f9fa;
+            background-color: #fce4ec; /* 浅粉色背景 */
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 30px;
             text-align: center;
-            border: 2px dashed #3498db;
+            border: 2px dashed #4fc3f7; /* 浅蓝色虚线边框 */
         }
         
         .upload-label {
             display: block;
             font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #d81b60; /* 深粉色 */
             margin-bottom: 15px;
         }
         
@@ -61,7 +63,7 @@
         }
         
         .upload-btn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #ff4081, #ff79b0); /* 粉色渐变 */
             color: white;
             border: none;
             border-radius: 25px;
@@ -75,14 +77,14 @@
         }
         
         .upload-btn:hover {
-            background: linear-gradient(135deg, #2980b9, #1f6395);
+            background: linear-gradient(135deg, #f50057, #ff4081); /* 深粉色渐变 */
             transform: translateY(-2px);
         }
         
         .file-info {
             margin-top: 15px;
             font-size: 14px;
-            color: #7f8c8d;
+            color: #78909c; /* 浅灰色 */
         }
         
         .control-panel {
@@ -91,9 +93,9 @@
             align-items: center;
             margin-bottom: 20px;
             padding: 15px;
-            background-color: #f8f9fa;
+            background-color: #e3f2fd; /* 浅蓝色背景 */
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.1);
         }
         
         .control-buttons {
@@ -102,7 +104,7 @@
         }
         
         .btn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #ff4081, #ff79b0); /* 粉色渐变 */
             color: white;
             border: none;
             border-radius: 25px;
@@ -117,32 +119,16 @@
         }
         
         .btn:hover {
-            background: linear-gradient(135deg, #2980b9, #1f6395);
+            background: linear-gradient(135deg, #f50057, #ff4081); /* 深粉色渐变 */
             transform: translateY(-2px);
         }
         
-        .btn-download {
-            background: linear-gradient(135deg, #27ae60, #219653);
-        }
-        
-        .btn-download:hover {
-            background: linear-gradient(135deg, #219653, #1e8449);
-        }
-        
         .btn-export-txt {
-            background: linear-gradient(135deg, #8e44ad, #732d91);
+            background: linear-gradient(135deg, #ba68c8, #ab47bc); /* 紫色渐变 */
         }
         
         .btn-export-txt:hover {
-            background: linear-gradient(135deg, #732d91, #5b2c6f);
-        }
-        
-        .btn-auto-download {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-        
-        .btn-auto-download:hover {
-            background: linear-gradient(135deg, #c0392b, #a93226);
+            background: linear-gradient(135deg, #ab47bc, #8e24aa); /* 深紫色渐变 */
         }
         
         .auto-download-toggle {
@@ -151,7 +137,7 @@
             gap: 10px;
             margin-top: 10px;
             padding: 10px;
-            background-color: #f8f9fa;
+            background-color: #fce4ec; /* 浅粉色背景 */
             border-radius: 8px;
         }
         
@@ -193,7 +179,7 @@
         }
         
         input:checked + .toggle-slider {
-            background-color: #219653;
+            background-color: #4fc3f7; /* 浅蓝色 */
         }
         
         input:checked + .toggle-slider:before {
@@ -205,19 +191,19 @@
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.1);
         }
         
         .bookmark-item {
             padding: 12px 0;
-            border-bottom: 1px dashed #ddd;
+            border-bottom: 1px dashed #4fc3f7; /* 浅蓝色虚线 */
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .bookmark-link {
-            color: #2980b9;
+            color: #e91e63; /* 粉色链接 */
             text-decoration: none;
             font-weight: bold;
             padding: 5px 10px;
@@ -227,7 +213,7 @@
         }
         
         .bookmark-link:hover {
-            background-color: #e8f4fc;
+            background-color: #fce4ec; /* 浅粉色背景 */
             text-decoration: underline;
         }
         
@@ -237,8 +223,8 @@
         }
         
         .bookmark-btn {
-            background-color: #ecf0f1;
-            color: #7f8c8d;
+            background-color: #f8bbd9; /* 浅粉色按钮 */
+            color: #e91e63; /* 粉色文字 */
             border: none;
             border-radius: 5px;
             padding: 5px 10px;
@@ -248,12 +234,12 @@
         }
         
         .bookmark-btn:hover {
-            background-color: #d5dbdb;
+            background-color: #f48fb1; /* 粉色悬停 */
         }
         
         .empty-state {
             text-align: center;
-            color: #95a5a6;
+            color: #90a4ae; /* 浅灰色 */
             padding: 40px 20px;
             font-style: italic;
         }
@@ -280,10 +266,11 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 400px;
             max-width: 90%;
+            border: 2px solid #e6f7ff; /* 浅蓝色边框 */
         }
         
         .modal h2 {
-            color: #2c3e50;
+            color: #e91e63; /* 粉色标题 */
             margin-top: 0;
             margin-bottom: 20px;
         }
@@ -295,21 +282,21 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
+            color: #5d4037; /* 深棕色文字 */
             font-weight: bold;
         }
         
         .form-control {
             width: 100%;
             padding: 10px 15px;
-            border: 2px solid #ddd;
+            border: 2px solid #f8bbd9; /* 浅粉色边框 */
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
         }
         
         .form-control:focus {
-            border-color: #3498db;
+            border-color: #e91e63; /* 粉色边框 */
             outline: none;
         }
         
@@ -321,11 +308,11 @@
         }
         
         .btn-cancel {
-            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            background: linear-gradient(135deg, #b0bec5, #90a4ae); /* 灰色渐变 */
         }
         
         .btn-cancel:hover {
-            background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+            background: linear-gradient(135deg, #90a4ae, #78909c); /* 深灰色渐变 */
         }
         
         .success-message {
@@ -433,9 +420,6 @@
                 <button id="exportTxtBtn" class="btn btn-export-txt">
                     <span>📥</span> 下载TXT文件
                 </button>
-                <button id="downloadBookmarksBtn" class="btn btn-download">
-                    <span>📥</span> 下载HTML文件
-                </button>
             </div>
         </div>
         
@@ -501,7 +485,6 @@
             
             const addBookmarkBtn = document.getElementById('addBookmarkBtn');
             const exportTxtBtn = document.getElementById('exportTxtBtn');
-            const downloadBookmarksBtn = document.getElementById('downloadBookmarksBtn');
             const addBookmarkModal = document.getElementById('addBookmarkModal');
             const cancelAddBookmark = document.getElementById('cancelAddBookmark');
             const addBookmarkForm = document.getElementById('addBookmarkForm');
@@ -816,33 +799,6 @@
                     downloadTxtFile('手动下载');
                 });
                 
-                // 下载HTML文件功能
-                downloadBookmarksBtn.addEventListener('click', function() {
-                    if (bookmarks.length === 0) {
-                        alert('当前没有可下载的书签');
-                        return;
-                    }
-                    
-                    // 生成完整的HTML文件内容
-                    const htmlContent = generateHtmlFile();
-                    
-                    // 创建Blob对象
-                    const blob = new Blob([htmlContent], {type: 'text/html;charset=utf-8'});
-                    
-                    // 创建下载链接
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = URL.createObjectURL(blob);
-                    downloadLink.download = `书签收藏_${new Date().toISOString().split('T')[0]}.html`;
-                    
-                    // 触发下载
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                    
-                    // 显示成功消息
-                    showSuccess(`HTML文件已下载，包含 ${bookmarks.length} 个书签`);
-                });
-                
                 // 点击模态框外部关闭模态框
                 addBookmarkModal.addEventListener('click', function(e) {
                     if (e.target === addBookmarkModal) {
@@ -896,103 +852,6 @@
                 }
             }
         });
-        
-        // 生成完整的HTML文件内容
-        function generateHtmlFile() {
-            // 生成书签列表的HTML
-            let bookmarksHtml = '';
-            bookmarks.forEach(bookmark => {
-                bookmarksHtml += `
-                    <div class="bookmark-item">
-                        <a href="${bookmark.url}" class="bookmark-link" target="_blank">
-                            ${bookmark.title}
-                        </a>
-                    </div>`;
-            });
-            
-            // 完整的HTML文件
-            return `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>我的书签收藏</title>
-    <style>
-        body {
-            background-color: #f0f8ff;
-            color: #333;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
-        }
-        
-        #bookmarkList {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        
-        .bookmark-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed #ddd;
-        }
-        
-        .bookmark-link {
-            color: #2980b9;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        
-        .bookmark-link:hover {
-            background-color: #e8f4fc;
-            text-decoration: underline;
-        }
-        
-        .empty-state {
-            text-align: center;
-            color: #95a5a6;
-            padding: 40px 20px;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>📚 我的书签收藏</h1>
-        
-        <div id="bookmarkList">
-            ${bookmarksHtml}
-        </div>
-        
-        <div style="text-align: center; margin-top: 30px; color: #7f8c8d; font-size: 14px;">
-            共 ${bookmarks.length} 个书签 | 生成时间: ${new Date().toLocaleString()}
-        </div>
-    </div>
-</body>
-</html>`;
-        }
     </script>
 </body>
 </html>
